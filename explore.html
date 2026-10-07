@@ -1,0 +1,286 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>The Complete Journey — Mahira Select</title>
+<meta name="description" content="Every screen of the Mahira Select experience, in the order a customer meets them.">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Ccircle cx='32' cy='32' r='29' fill='%230f1d15'/%3E%3Ccircle cx='32' cy='32' r='24' fill='none' stroke='%23c9a35f' stroke-width='2'/%3E%3Ctext x='32' y='42' font-family='Georgia,serif' font-size='28' fill='%23e8c87a' text-anchor='middle'%3EM%3C/text%3E%3C/svg%3E">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,500;0,600;1,400&family=Cormorant+Garamond:ital,wght@0,400;0,500;1,400;1,500&family=Montserrat:wght@300;400;500;600&family=Great+Vibes&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="css/styles.css?v=40">
+<link rel="stylesheet" href="css/shop.css?v=10">
+<style>
+  .xp-hero { padding: clamp(26px,5vh,60px) 0 clamp(18px,3vh,34px); text-align: center; }
+  .xp-hero .sh-rule { margin: 18px auto 0; }
+  .xp-tools { display: flex; gap: 10px; justify-content: center; flex-wrap: wrap; margin-top: clamp(18px,3vh,28px); }
+  .xp-note { margin-top: 14px; text-align: center; font-size: 12.5px; color: rgba(59,48,37,.68); }
+  .xp-note b { color: #4A6B4E; font-weight: 400; }
+
+  .xp-phase { padding: clamp(24px,4vh,46px) 0 0; }
+  .xp-ph-h { display: flex; align-items: baseline; gap: 14px; flex-wrap: wrap; }
+  .xp-ph-h h2 { font-family: var(--serif); font-weight: 400; font-size: clamp(20px,1.7vw,28px); color: var(--s-walnut); }
+  .xp-ph-h span { font-size: 11px; letter-spacing: .22em; text-transform: uppercase; color: var(--s-gold); }
+  .xp-ph-rule { display: block; height: 1px; background: var(--s-line); margin: 14px 0 clamp(16px,2.6vh,26px); }
+
+  .xp-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(258px,1fr)); gap: clamp(14px,1.6vw,26px); }
+  .xp-card {
+    position: relative; display: flex; flex-direction: column; overflow: hidden;
+    background: var(--s-ivory-hi); border: 1px solid var(--s-line-s);
+    transition: border-color .4s var(--ease), box-shadow .4s var(--ease), transform .4s var(--ease);
+  }
+  .xp-card:hover { border-color: var(--s-gold); box-shadow: 0 16px 38px rgba(45,34,20,.15); }
+  .xp-shot { position: relative; aspect-ratio: 16/10; overflow: hidden; background: var(--s-ivory-lo); }
+  .xp-shot img { width: 100%; height: 100%; object-fit: cover; transition: transform 1s var(--ease); }
+  .xp-card:hover .xp-shot img { transform: scale(1.05); }
+  .xp-shot.is-flat { display: flex; align-items: center; justify-content: center;
+    background: linear-gradient(160deg,#1B2E20,var(--s-forest)); }
+  .xp-shot.is-flat svg { width: 46px; height: 46px; fill: none; stroke: var(--s-gold); stroke-width: 1.1; stroke-linecap: round; stroke-linejoin: round; }
+  .xp-n {
+    position: absolute; left: 0; top: 12px; z-index: 2; padding: 5px 11px;
+    background: var(--s-forest); color: var(--s-ivory-hi);
+    font-size: 10px; letter-spacing: .16em; text-transform: uppercase;
+  }
+  .xp-b { padding: 15px 16px 17px; display: flex; flex-direction: column; gap: 6px; flex: 1 1 auto; }
+  .xp-t { font-family: var(--serif); font-size: 17px; color: var(--s-walnut); }
+  .xp-d { font-size: 12.5px; line-height: 1.6; color: rgba(59,48,37,.72); flex: 1 1 auto; }
+  .xp-go { display: inline-flex; align-items: center; gap: 9px; margin-top: 4px; min-height: 30px;
+    font-size: 11px; letter-spacing: .18em; text-transform: uppercase; color: var(--s-gold); }
+  .xp-go svg { width: 22px; fill: none; stroke: currentColor; stroke-width: 1.3; stroke-linecap: round; stroke-linejoin: round; transition: transform .4s var(--ease); }
+  .xp-card:hover .xp-go svg { transform: translateX(4px); }
+  .xp-card a.xp-hit { position: absolute; inset: 0; z-index: 3; }
+
+  @media (max-width: 767px) {
+    .xp-grid { grid-template-columns: 1fr 1fr; gap: 12px; }
+    .xp-t { font-size: 14.5px; }
+    .xp-d { display: none; }
+    .xp-b { padding: 11px 12px 13px; }
+    .xp-tools .sh-cta, .xp-tools .sh-ghost { width: 100%; }
+  }
+  @media (max-width: 359px) { .xp-grid { grid-template-columns: 1fr; } }
+</style>
+</head>
+<body class="shop-page" data-view="explore">
+
+<header id="shopHeader">
+  <button id="menuBtn" class="menu-btn" aria-label="Open menu" aria-expanded="false" aria-controls="mobileNav"><span></span><span></span></button>
+  <a class="brand" href="index.html" aria-label="Mahira Select — home">
+    <svg id="brandLogo" viewBox="0 0 1600 1351" role="img" aria-label="Mahira Select"></svg>
+  </a>
+  <nav class="sh-nav" aria-label="Primary">
+    <span><a href="index.html#top">Home</a></span>
+    <span><a href="category.html?c=women" data-cat="women">Women</a></span>
+    <span><a href="category.html?c=men" data-cat="men">Men</a></span>
+    <span><a href="category.html?c=kalakaari" data-cat="kalakaari">Kalakaari</a></span>
+    <span><a href="shop.html?c=women&amp;s=sarees">New Arrivals</a></span>
+    <span><a href="index.html#best">Best Sellers</a></span>
+    <span><a href="explore.html" aria-current="true">The Journey</a></span>
+  </nav>
+  <div class="sh-utils">
+    <a class="util" href="shop.html?c=women" aria-label="Search"><svg viewBox="0 0 24 24"><circle cx="10.5" cy="10.5" r="6.5"/><path d="M15.4 15.4 21 21"/></svg></a>
+    <a class="util" href="track.html" aria-label="Orders"><svg viewBox="0 0 24 24"><path d="M12 20.2 5 13.4a4.6 4.6 0 0 1 0-6.6 4.7 4.7 0 0 1 6.6 0l.4.4.4-.4a4.7 4.7 0 0 1 6.6 0 4.6 4.6 0 0 1 0 6.6Z"/></svg><span class="sh-badge" data-badge="wish">0</span></a>
+    <a class="util" href="cart.html" aria-label="Bag"><svg viewBox="0 0 24 24"><path d="M5.5 8.5h13l-.9 11a1.6 1.6 0 0 1-1.6 1.5H8a1.6 1.6 0 0 1-1.6-1.5Z"/><path d="M8.8 8.2V7a3.2 3.2 0 0 1 6.4 0v1.2"/></svg><span class="sh-badge" data-badge="cart">0</span></a>
+  </div>
+</header>
+
+<div id="mobileNav" aria-hidden="true">
+  <div class="mn-top">
+    <button class="mn-back" id="mnBack" aria-label="Back one level"><svg viewBox="0 0 20 14"><path d="M19 7H2M8 1 1.5 7 8 13"/></svg></button>
+    <p class="mn-title" id="mnTitle"><svg class="mn-emblem" id="menuEmblem" viewBox="380 30 840 900" aria-hidden="true"></svg></p>
+    <button class="mn-close" id="mnClose" aria-label="Close menu"><svg viewBox="0 0 24 24"><path d="M6 6l12 12M18 6L6 18"/></svg></button>
+  </div>
+  <div class="mn-stage" id="mnStage"></div>
+  <div class="mn-foot">
+    <a href="track.html" class="mn-acct">My Orders</a>
+    <p>Timeless&ensp;·&ensp;Ethical&ensp;·&ensp;Exquisite</p>
+  </div>
+</div>
+
+<main>
+  <div class="shop-wrap">
+
+    <section class="xp-hero sh-head">
+      <p class="sh-eyebrow">Every screen, in order</p>
+      <h1 class="sh-h1">The Complete Journey</h1>
+      <p class="sh-lede" style="margin-inline:auto">
+        From the first look at the homepage to tracking a parcel to the door — the whole
+        Mahira Select experience, laid out in the order a customer meets it.
+      </p>
+      <i class="sh-rule"></i>
+
+      <div class="xp-tools">
+        <button type="button" class="sh-cta" id="xpSeed">
+          <span class="sh-cta-l">Load a demo cart &amp; order</span>
+          <svg viewBox="0 0 30 10"><path d="M0 5h25M21 1l5 4-5 4"/></svg>
+        </button>
+        <button type="button" class="sh-ghost" id="xpReset">Clear everything</button>
+      </div>
+      <p class="xp-note" id="xpNote">
+        The cart, order and tracking screens need something in them. Load the demo and every
+        step below has real content to show.
+      </p>
+    </section>
+
+    <section class="xp-phase">
+      <div class="xp-ph-h"><h2>Discover</h2><span>Steps 1 – 3</span></div>
+      <i class="xp-ph-rule"></i>
+      <div class="xp-grid" id="gDiscover"></div>
+    </section>
+
+    <section class="xp-phase">
+      <div class="xp-ph-h"><h2>Choose</h2><span>Steps 4 – 5</span></div>
+      <i class="xp-ph-rule"></i>
+      <div class="xp-grid" id="gChoose"></div>
+    </section>
+
+    <section class="xp-phase">
+      <div class="xp-ph-h"><h2>Checkout</h2><span>Steps 6 – 8</span></div>
+      <i class="xp-ph-rule"></i>
+      <div class="xp-grid" id="gCheckout"></div>
+    </section>
+
+    <section class="xp-phase">
+      <div class="xp-ph-h"><h2>After the order</h2><span>Steps 9 – 11</span></div>
+      <i class="xp-ph-rule"></i>
+      <div class="xp-grid" id="gAfter"></div>
+    </section>
+
+    <section class="xp-phase" style="padding-bottom:clamp(40px,8vh,90px)">
+      <div class="xp-ph-h"><h2>Account</h2><span>Sign in &amp; sign up</span></div>
+      <i class="xp-ph-rule"></i>
+      <div class="xp-grid" id="gAccount"></div>
+    </section>
+
+  </div>
+</main>
+
+<footer class="sh-foot">
+  <span class="sh-foot-b">
+    <svg id="footEmblemS" viewBox="380 30 840 900" aria-hidden="true"></svg>
+    <p>Mahira Select</p>
+  </span>
+  <p>Tradition Lives Beautifully</p>
+</footer>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.13.0/gsap.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.13.0/CustomEase.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.13.0/ScrollTrigger.min.js"></script>
+<script src="js/emblem-data.js?v=10"></script>
+<script src="js/shop-data.js?v=2"></script>
+<script src="js/shop.js?v=6"></script>
+<script>
+(function () {
+  'use strict';
+  var $ = function (s) { return document.querySelector(s); };
+  var A = 'assets/';
+  var ICON_CARD = '<svg viewBox="0 0 24 24"><rect x="2.5" y="5" width="19" height="14" rx="2"/><path d="M2.5 10h19M6 14.5h4"/></svg>';
+  var ICON_TICK = '<svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><path d="m8 12.3 2.7 2.7L16 9.6"/></svg>';
+  var ICON_MAIL = '<svg viewBox="0 0 24 24"><rect x="2.5" y="5" width="19" height="14" rx="2"/><path d="m3.2 6 8.8 6.4L20.8 6"/></svg>';
+  var ICON_TRUCK = '<svg viewBox="0 0 24 24"><path d="M1.5 5h13v10h-13zM14.5 8.5h4l3.5 3.5v3h-7.5"/><circle cx="6" cy="17.5" r="2"/><circle cx="18" cy="17.5" r="2"/></svg>';
+  var ICON_KEY = '<svg viewBox="0 0 24 24"><circle cx="8" cy="12" r="4.2"/><path d="M12.2 12H21M18 12v3.2M15.4 12v2.4"/></svg>';
+
+  var STEPS = {
+    gDiscover: [
+      { n: '01', t: 'Home', d: 'The cinematic opening — logo, curtain and the women’s hero.', href: 'index.html', img: A + 'women-clean.jpg?v=3' },
+      { n: '02', t: 'Category', d: 'Women or Kalakaari, with every collection inside it.', href: 'category.html?c=women', img: A + 's3-sarees.jpg?v=5' },
+      { n: '03', t: 'Product Listing', d: 'Filter by fabric, price and colour; sort the results.', href: 'shop.html?c=women&s=sarees', img: A + 's4-p1.jpg?v=1' }
+    ],
+    gChoose: [
+      { n: '04', t: 'Product Detail', d: 'Gallery, colour and size, quantity, add to cart or buy now.', href: 'product.html?p=ms-101', img: A + 's3-kurta.jpg?v=5' },
+      { n: '05', t: 'Added to Cart', d: 'The confirmation sheet — open a product and add it to see this.', href: 'product.html?p=ms-102', img: A + 's5-p1.jpg?v=1' }
+    ],
+    gCheckout: [
+      { n: '06', t: 'Cart', d: 'Quantities, line totals, savings and shipping.', href: 'cart.html', icon: ICON_CARD },
+      { n: '07', t: 'Address', d: 'Choose, add, edit or remove a delivery address.', href: 'checkout.html?step=address', icon: ICON_CARD },
+      { n: '08', t: 'Payment', d: 'UPI, card, net banking or cash on delivery.', href: 'checkout.html?step=payment', icon: ICON_CARD }
+    ],
+    gAfter: [
+      { n: '09', t: 'Order Placed', d: 'The thank-you page with your order number and summary.', href: 'order.html', icon: ICON_TICK },
+      { n: '10', t: 'Confirmation Email', d: 'The email template, merged with a real order.', href: 'email-preview.html', icon: ICON_MAIL },
+      { n: '11', t: 'Order Tracking', d: 'A five-stage timeline and your order history.', href: 'track.html', icon: ICON_TRUCK }
+    ],
+    gAccount: [
+      { n: '—', t: 'Sign In', d: 'The editorial split with the ivory form.', href: 'login.html', img: A + 'women-mobile.jpg?v=3' },
+      { n: '—', t: 'Create Account', d: 'Deep forest storytelling beside the form.', href: 'signup.html', img: A + 's4-editorial.jpg?v=2' },
+      { n: '—', t: 'Menu & Navigation', d: 'The ivory drawer and mega menus — open the menu above.', href: 'index.html', icon: ICON_KEY }
+    ]
+  };
+
+  function card(s) {
+    var shot = s.img
+      ? '<span class="xp-shot"><img src="' + s.img + '" alt="" loading="lazy" decoding="async"></span>'
+      : '<span class="xp-shot is-flat">' + s.icon + '</span>';
+    return '<article class="xp-card">' + shot +
+      '<span class="xp-n">' + s.n + '</span>' +
+      '<span class="xp-b">' +
+        '<span class="xp-t">' + s.t + '</span>' +
+        '<span class="xp-d">' + s.d + '</span>' +
+        '<span class="xp-go">Open<svg viewBox="0 0 28 10"><path d="M0 5h23M19 1l5 4-5 4"/></svg></span>' +
+      '</span>' +
+      '<a class="xp-hit" href="' + s.href + '" aria-label="' + s.t + '"></a></article>';
+  }
+  Object.keys(STEPS).forEach(function (id) {
+    var el = document.getElementById(id);
+    if (el) el.innerHTML = STEPS[id].map(card).join('');
+  });
+
+  /* ---------- demo data so every screen has something to show ---------- */
+  function seed() {
+    var cart = [
+      { k: 'ms-101|Olive Green|Free Size', id: 'ms-101', color: 'Olive Green', size: 'Free Size', qty: 1 },
+      { k: 'mk-101|Rust|Free Size',        id: 'mk-101', color: 'Rust',        size: 'Free Size', qty: 2 }
+    ];
+    localStorage.setItem('mahira.cart', JSON.stringify(cart));
+    localStorage.setItem('mahira.wishlist', JSON.stringify(['ms-102', 'mk-201']));
+
+    var S = window.MAHIRA_SHOP;
+    function line(id, color, qty) {
+      var p = S.byId(id);
+      var i = p.colors.map(function (c) { return c.name; }).indexOf(color);
+      return { id: id, title: p.title, price: p.price, qty: qty, color: color, size: 'Free Size',
+               img: p.images[Math.max(0, Math.min(i, p.images.length - 1))] };
+    }
+    var lines = [line('ms-102', 'Maroon', 2)];
+    var sub = lines.reduce(function (n, l) { return n + l.price * l.qty; }, 0);
+    var addr = { label: 'Home', name: 'Jagadeesh', line: '123, MG Road, Indiranagar',
+                 city: 'Bengaluru, Karnataka 560038', phone: '+91 98765 43210', def: true };
+    var orders = [
+      { id: 'MS' + String(Date.now()).slice(-6), placed: Date.now() - 1000 * 60 * 2,
+        lines: lines, totals: { sub: sub, save: 7400, ship: 0, total: sub },
+        address: addr, payment: 'Credit / Debit Card', stage: 0 },
+      { id: 'MS100244', placed: Date.now() - 1000 * 60 * 60 * 30,
+        lines: [line('mk-101', 'Rust', 1)],
+        totals: { sub: 15800, save: 3700, ship: 0, total: 15800 },
+        address: addr, payment: 'UPI', stage: 4 }
+    ];
+    localStorage.setItem('mahira.orders', JSON.stringify(orders));
+    note('Demo cart, wishlist and two orders loaded. <b>Every step below now has content.</b>');
+  }
+  function reset() {
+    ['mahira.cart', 'mahira.wishlist', 'mahira.orders', 'mahira.addresses']
+      .forEach(function (k) { localStorage.removeItem(k); });
+    note('Cleared. The cart, order and tracking screens will be empty until you shop or load the demo.');
+  }
+  function note(html) {
+    var n = $('#xpNote');
+    n.innerHTML = html;
+    if (window.gsap) gsap.fromTo(n, { opacity: 0, y: 6 }, { opacity: 1, y: 0, duration: .45, ease: 'luxOut' });
+    if (window.__mahiraShop) {
+      var c = window.__mahiraShop.Cart.count(), w = window.__mahiraShop.Wish.all().length;
+      document.querySelectorAll('[data-badge="cart"]').forEach(function (b) { b.textContent = c; b.classList.toggle('is-on', c > 0); });
+      document.querySelectorAll('[data-badge="wish"]').forEach(function (b) { b.textContent = w; b.classList.toggle('is-on', w > 0); });
+    }
+  }
+  $('#xpSeed').addEventListener('click', seed);
+  $('#xpReset').addEventListener('click', reset);
+
+  /* entrance */
+  if (window.gsap && !window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+    gsap.fromTo('.xp-card', { y: 30, opacity: 0 },
+      { y: 0, opacity: 1, duration: .8, ease: 'luxOut', stagger: .045, delay: .3 });
+  }
+})();
+</script>
+</body>
+</html>

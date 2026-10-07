@@ -1,0 +1,214 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Order Email Preview — Mahira Select</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;500&family=Montserrat:wght@300;400;500;600&display=swap" rel="stylesheet">
+<style>
+  :root { --ivory:#F3EBDD; --ivory-hi:#FBF6EC; --forest:#17261B; --gold:#B89A62; --walnut:#3B3025; }
+  * { box-sizing: border-box; }
+  body { margin:0; background:var(--ivory); color:var(--walnut);
+         font-family:Montserrat,'Helvetica Neue',Arial,sans-serif; }
+  header { padding:22px clamp(16px,4vw,40px); background:linear-gradient(180deg,var(--ivory-hi),var(--ivory));
+           box-shadow:0 1px 0 rgba(184,154,98,.42); display:flex; align-items:center; gap:18px; flex-wrap:wrap; }
+  h1 { margin:0; font-family:'Playfair Display',Georgia,serif; font-weight:400; font-size:clamp(19px,2vw,26px); }
+  .sub { font-size:12.5px; color:rgba(59,48,37,.7); }
+  .bar { margin-left:auto; display:flex; gap:8px; flex-wrap:wrap; }
+  button, a.btn { font:inherit; font-size:12px; letter-spacing:.12em; text-transform:uppercase;
+    padding:11px 16px; min-height:46px; cursor:pointer; border:1px solid var(--gold);
+    background:rgba(255,253,248,.8); color:var(--walnut); border-radius:3px; text-decoration:none;
+    display:inline-flex; align-items:center; transition:background .3s, color .3s; }
+  button:hover, a.btn:hover { background:var(--gold); color:#241A0C; }
+  button.on { background:var(--forest); border-color:var(--forest); color:var(--ivory-hi); }
+  main { padding:clamp(16px,3vw,34px); display:flex; gap:clamp(16px,3vw,34px); align-items:flex-start; flex-wrap:wrap; }
+  .pane { background:#EDE2CE; border:1px solid rgba(184,154,98,.42); padding:14px; }
+  .pane h2 { margin:0 0 10px; font-size:11px; letter-spacing:.2em; text-transform:uppercase; color:var(--gold); font-weight:500; }
+  iframe { border:0; background:#EDE2CE; display:block; width:100%; }
+  .desk iframe { width:640px; height:1500px; }
+  .mob  iframe { width:375px; height:1500px; }
+  @media (max-width:1100px){ .desk iframe { width:100%; min-width:0; } main { flex-direction:column; } }
+  /* on a phone the page IS the mobile case — show one fluid frame */
+  @media (max-width:767px){
+    .pane { width:100%; max-width:100%; padding:10px; }
+    .desk { display:none; }
+    .mob iframe { width:100%; }
+    .mob h2::after { content:' (this device)'; }
+  }
+  .note { padding:0 clamp(16px,3vw,34px) 30px; font-size:12.5px; line-height:1.75; color:rgba(59,48,37,.75); max-width:76ch; }
+  .note code { background:rgba(184,154,98,.16); padding:1px 5px; border-radius:2px; font-size:12px; }
+  .note h3 { font-family:'Playfair Display',Georgia,serif; font-weight:400; font-size:17px; margin:22px 0 8px; }
+</style>
+</head>
+<body>
+
+<header>
+  <div>
+    <h1>Order Confirmation Email</h1>
+    <p class="sub" id="src">email/order-confirmation.html</p>
+  </div>
+  <div class="bar">
+    <button id="useReal" class="on">Latest real order</button>
+    <button id="useSample">Sample order</button>
+    <button id="copy">Copy rendered HTML</button>
+    <a class="btn" href="index.html">Back to site</a>
+  </div>
+</header>
+
+<main>
+  <section class="pane desk">
+    <h2>Desktop &middot; 600px</h2>
+    <iframe id="deskFrame" title="Email preview, desktop width"></iframe>
+  </section>
+  <section class="pane mob">
+    <h2>Mobile &middot; 375px</h2>
+    <iframe id="mobFrame" title="Email preview, mobile width"></iframe>
+  </section>
+</main>
+
+<div class="note">
+  <h3>How this renders</h3>
+  <p>
+    <code>email/order-confirmation.html</code> is the master template. Everything between
+    <code>&lt;!-- ITEM:START --&gt;</code> and <code>&lt;!-- ITEM:END --&gt;</code> is repeated once per line
+    item; every other <code>{{field}}</code> is a straight substitution. The same merge that runs on this
+    page is what a mail service would run server-side.
+  </p>
+  <h3>Merge fields</h3>
+  <p>
+    <code>base_url</code>, <code>order_id</code>, <code>customer_name</code>, <code>order_date</code>,
+    <code>track_url</code>, <code>subtotal</code>, <code>shipping</code>, <code>total</code>,
+    <code>address_label</code>, <code>address_name</code>, <code>address_line</code>,
+    <code>address_city</code>, <code>address_phone</code>, <code>payment_method</code>,
+    <code>help_url</code>, <code>preferences_url</code>, <code>unsubscribe_url</code>, and per item
+    <code>item_image</code>, <code>item_title</code>, <code>item_variant</code>, <code>item_qty</code>,
+    <code>item_line_total</code>.
+  </p>
+  <h3>Why it is built this way</h3>
+  <p>
+    Tables and inline styles, because Gmail and Outlook strip most of a stylesheet. Georgia stands in for
+    Playfair and Helvetica for Montserrat, since custom fonts do not load in most clients. The tick and the
+    closing rule are drawn with characters and table cells rather than images, so the message still reads
+    when a client blocks images — which most do by default. The button carries a VML fallback so Outlook
+    renders it as a real button rather than a bare link.
+  </p>
+</div>
+
+<script src="js/shop-data.js?v=1"></script>
+<script>
+(function () {
+  'use strict';
+  var TPL = 'email/order-confirmation.html';
+  var BASE = location.origin;
+  var raw = '', mode = 'real';
+
+  function money(n) { return '₹ ' + Number(n).toLocaleString('en-IN'); }
+  function esc(s) { return String(s == null ? '' : s)
+    .replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;'); }
+
+  function sampleOrder() {
+    var pr = MAHIRA_SHOP.byId('ms-101');
+    return {
+      id: 'MS258741', placed: Date.now(),
+      lines: [
+        { title: pr.title, price: pr.price, qty: 1, color: 'Olive Green', size: 'Free Size', img: pr.images[0] },
+        { title: 'Kalamkari Silk Saree', price: 15800, qty: 2, color: 'Rust', size: 'Free Size', img: 'assets/s4-p1.jpg?v=1' }
+      ],
+      totals: { sub: 44100, ship: 0, total: 44100 },
+      address: { label:'Home', name:'Jagadeesh', line:'123, MG Road, Indiranagar',
+                 city:'Bengaluru, Karnataka 560038', phone:'+91 98765 43210' },
+      payment: 'Credit / Debit Card'
+    };
+  }
+  function realOrder() {
+    try {
+      var all = JSON.parse(localStorage.getItem('mahira.orders') || '[]');
+      return all[0] || null;
+    } catch (e) { return null; }
+  }
+
+  function abs(u) { return /^https?:/.test(u) ? u : BASE + '/' + String(u).replace(/^\//, ''); }
+
+  function render(order) {
+    var start = raw.indexOf('<!-- ITEM:START'), end = raw.indexOf('<!-- ITEM:END');
+    if (start < 0 || end < 0) return raw;
+    var startEnd = raw.indexOf('-->', start) + 3;
+    var head = raw.slice(0, start);
+    var itemTpl = raw.slice(startEnd, end);
+    var tail = raw.slice(raw.indexOf('-->', end) + 3);
+
+    var items = order.lines.map(function (l) {
+      var variant = 'Colour: ' + l.color + (l.size && l.size !== 'Free Size' ? ' · Size: ' + l.size : '');
+      return itemTpl
+        .replace(/\{\{item_image\}\}/g, esc(abs(l.img)))
+        .replace(/\{\{item_title\}\}/g, esc(l.title))
+        .replace(/\{\{item_variant\}\}/g, esc(variant))
+        .replace(/\{\{item_qty\}\}/g, esc(l.qty))
+        .replace(/\{\{item_line_total\}\}/g, esc(money(l.price * l.qty)));
+    }).join('');
+
+    var a = order.address || {};
+    var map = {
+      base_url: BASE,
+      order_id: order.id,
+      customer_name: (a.name || 'there').split(' ')[0],
+      order_date: new Date(order.placed).toLocaleString('en-IN',
+        { day:'2-digit', month:'long', year:'numeric', hour:'2-digit', minute:'2-digit' }),
+      track_url: BASE + '/track.html?o=' + order.id,
+      subtotal: money(order.totals.sub),
+      shipping: order.totals.ship === 0 ? 'Free' : money(order.totals.ship),
+      total: money(order.totals.total),
+      address_label: a.label || '', address_name: a.name || '', address_line: a.line || '',
+      address_city: a.city || '', address_phone: a.phone || '',
+      payment_method: order.payment || '',
+      help_url: BASE + '/index.html#footer',
+      preferences_url: BASE + '/index.html#footer',
+      unsubscribe_url: BASE + '/index.html#footer'
+    };
+    var out = head + items + tail;
+    Object.keys(map).forEach(function (k) {
+      out = out.replace(new RegExp('\\{\\{' + k + '\\}\\}', 'g'), esc(map[k]));
+    });
+    return out;
+  }
+
+  function paint() {
+    var order = mode === 'real' ? (realOrder() || sampleOrder()) : sampleOrder();
+    var html = render(order);
+    window.__emailHTML = html;
+    ['deskFrame', 'mobFrame'].forEach(function (id) {
+      var f = document.getElementById(id);
+      f.srcdoc = html;
+      f.onload = function () {
+        try {
+          var h = f.contentDocument.documentElement.scrollHeight;
+          if (h > 200) f.style.height = (h + 20) + 'px';
+        } catch (e) {}
+      };
+    });
+    document.getElementById('src').textContent =
+      TPL + '  ·  ' + (mode === 'real' && realOrder() ? 'order ' + order.id + ' from this browser' : 'sample data');
+  }
+
+  fetch(TPL).then(function (r) { return r.text(); }).then(function (t) { raw = t; paint(); })
+    .catch(function () { document.getElementById('src').textContent = 'Could not load ' + TPL; });
+
+  document.getElementById('useReal').addEventListener('click', function () {
+    mode = 'real'; this.classList.add('on'); document.getElementById('useSample').classList.remove('on'); paint();
+  });
+  document.getElementById('useSample').addEventListener('click', function () {
+    mode = 'sample'; this.classList.add('on'); document.getElementById('useReal').classList.remove('on'); paint();
+  });
+  document.getElementById('copy').addEventListener('click', function () {
+    var b = this;
+    navigator.clipboard.writeText(window.__emailHTML || '').then(function () {
+      var t = b.textContent; b.textContent = 'Copied';
+      setTimeout(function () { b.textContent = t; }, 1400);
+    }, function () { b.textContent = 'Copy failed'; });
+  });
+})();
+</script>
+</body>
+</html>
